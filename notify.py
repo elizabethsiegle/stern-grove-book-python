@@ -1,9 +1,17 @@
+import logging
 import os
 import resend
 
+logger = logging.getLogger(__name__)
+
+
+def _init_resend() -> None:
+    """Initialize Resend API key from environment."""
+    resend.api_key = os.environ["RESEND_API_KEY"]
+
 
 def send_success(concert: dict) -> None:
-    resend.api_key = os.environ["RESEND_API_KEY"]
+    _init_resend()
     try:
         resend.Emails.send({
             "from": os.environ["RESEND_FROM"],
@@ -17,11 +25,11 @@ def send_success(concert: dict) -> None:
             ),
         })
     except Exception as exc:
-        print(f"[notify] Resend error (success email): {exc}")
+        logger.exception("Resend error (success email): %s", exc)
 
 
 def send_failure(concert: dict, error_text: str) -> None:
-    resend.api_key = os.environ["RESEND_API_KEY"]
+    _init_resend()
     try:
         resend.Emails.send({
             "from": os.environ["RESEND_FROM"],
@@ -30,4 +38,4 @@ def send_failure(concert: dict, error_text: str) -> None:
             "text": f"Error:\n\n{error_text}",
         })
     except Exception as exc:
-        print(f"[notify] Resend error (failure email): {exc}")
+        logger.exception("Resend error (failure email): %s", exc)

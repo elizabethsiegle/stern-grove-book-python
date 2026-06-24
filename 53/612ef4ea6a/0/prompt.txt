@@ -1,0 +1,163 @@
+looks good
+
+---
+
+1
+
+---
+
+next
+
+---
+
+error installing playwright browsers:
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Package libasound2 is a virtual package provided by:
+  liboss4-salsa-asound2 4.2-build2020-1ubuntu3.1
+  libasound2t64 1.2.11-1ubuntu0.2 (= 1.2.11-1ubuntu0.2)
+
+E: Package 'libasound2' has no installation candidate
+Failed to install browsers
+Error: Installation process exited with code: 100
+Error: Process completed with exit code 1.
+
+---
+
+error
+Run playwright install chromium --with-deps
+Installing dependencies...
+Switching to root user to install dependencies...
+Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [1825 B]
+Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [155 kB]
+Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [11.6 kB]
+Get:11 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [185 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1032 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [260 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [181 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [17.4 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1656 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [326 kB]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [34.8 kB]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5760 B]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [10.5 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [780 kB]
+Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [178 kB]
+Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [44.9 kB]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [11.5 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1170 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [229 kB]
+Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
+Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [24.1 kB]
+Get:31 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1214 B]
+Fetched 7164 kB in 1s (5574 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Package libasound2 is a virtual package provided by:
+  liboss4-salsa-asound2 4.2-build2020-1ubuntu3.1
+  libasound2t64 1.2.11-1ubuntu0.2 (= 1.2.11-1ubuntu0.2)
+
+E: Package 'libasound2' has no installation candidate
+Failed to install browsers
+Error: Installation process exited with code: 100
+Error: Process completed with exit code 1.
+
+---
+
+no email was sent. the script ran with these errors but it said the workflow completed.
+Resend error (failure email): Invalid `to` field. The email address needs to follow the `email@example.com` or `Name <email@example.com>` format.
+Traceback (most recent call last):
+  File "/home/runner/work/stern-grove-book-python/stern-grove-book-python/lottery.py", line 25, in main
+    await browser.enter_lottery(concert)
+  File "/home/runner/work/stern-grove-book-python/stern-grove-book-python/browser.py", line 102, in enter_lottery
+    await page.select_option("select[name='tickets'], select[name='ticketCount']", "4")
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 10627, in select_option
+    await self._impl_obj.select_option(
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright/_impl/_page.py", line 951, in select_option
+[lottery] Open lottery found: Unknown Artist (june 21)
+    return await self._main_frame.select_option(**params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 679, in select_option
+    return await self._channel.send("selectOption", params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 514, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+waiting for locator("select[name='tickets'], select[name='ticketCount']")
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/stern-grove-book-python/stern-grove-book-python/notify.py", line 34, in send_failure
+[lottery] Entry failed: Page.select_option: Timeout 30000ms exceeded.
+    resend.Emails.send({
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/resend/emails/_emails.py", line 99, in send
+    ).perform_with_content()
+      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/resend/request.py", line 74, in perform_with_content
+    resp = self.perform()
+           ^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/resend/request.py", line 57, in perform
+    raise_for_code_and_type(
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/resend/exceptions.py", line 213, in raise_for_code_and_type
+    raise error_from_list(
+resend.exceptions.ValidationError: Invalid `to` field. The email address needs to follow the `email@example.com` or `Name <email@example.com>` format.
+Call log:
+waiting for locator("select[name='tickets'], select[name='ticketCount']")
+
+---
+
+Error:
+
+Traceback (most recent call last):
+  File "/home/runner/work/stern-grove-book-python/stern-grove-book-python/lottery.py", line 25, in main
+    await browser.enter_lottery(concert)
+  File "/home/runner/work/stern-grove-book-python/stern-grove-book-python/browser.py", line 102, in enter_lottery
+    await page.select_option("select[name='tickets'], select[name='ticketCount']", "4")
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 10627, in select_option
+    await self._impl_obj.select_option(
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright/_impl/_page.py", line 951, in select_option
+    return await self._main_frame.select_option(**params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 679, in select_option
+    return await self._channel.send("selectOption", params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 59, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 514, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+waiting for locator("select[name='tickets'], select[name='ticketCount']")
+
+---
+
+amazing!! now please make a readme mentioning how it works ( headless Chromium browser loads sterngrove.org/lineup2026 and reads window.TixologiWidget.concerts — a JavaScript object Stern Grove injects at page load — to find which lottery is currently open), Navigates to the Tixologi registration form at events.tixologi.com/event/{id}/lottery, Fills all form fields: name, email, 4 tickets, zip code, and demographic dropdowns, Sends a success or failure email via Resend, Records the entry in entered-lotteries.json and commits it back to the repo so it never double-enters...and link to the tools used in the stack (Playwright for browser automation, Resend for email, GitHub Actions for weekly cron, Entire for agentic git), how to setup or run locally...
+
+---
+
+i got the official email from stern grove, but no email from Resend. The logs show
+Run python lottery.py
+[lottery] Open lottery found: Unknown Artist (june 21)
+[lottery] Entry failed: Page.wait_for_selector: Timeout 15000ms exceeded.
+Call log:
+waiting for locator("h1:has-text('Thank'), h2:has-text('Thank'), h3:has-text('Thank'), [class*='success'], [class*='confirmation'], [class*='complete']") to be visible

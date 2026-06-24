@@ -1,0 +1,42 @@
+name: Stern Grove Lottery
+
+on:
+  schedule:
+    - cron: "5 17 * * *"  # 10:05am PDT (UTC-7 summer)
+  workflow_dispatch:        # manual trigger for testing
+
+jobs:
+  enter-lottery:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GIT_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Playwright browsers
+        run: playwright install chromium --with-deps
+
+      - name: Run lottery script
+        run: python lottery.py
+        env:
+          FIRST_NAME: ${{ secrets.FIRST_NAME }}
+          LAST_NAME: ${{ secrets.LAST_NAME }}
+          EMAIL: ${{ secrets.EMAIL }}
+          ZIP_CODE: ${{ secrets.ZIP_CODE }}
+          GENDER: ${{ secrets.GENDER }}
+          AGE: ${{ secrets.AGE }}
+          ETHNICITY: ${{ secrets.ETHNICITY }}
+          ANNUAL_HOUSEHOLD_INCOME: ${{ secrets.ANNUAL_HOUSEHOLD_INCOME }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM: ${{ secrets.RESEND_FROM }}
+          NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GIT_REPO: ${{ secrets.GIT_REPO }}

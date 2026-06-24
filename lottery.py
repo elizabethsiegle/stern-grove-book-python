@@ -1,4 +1,5 @@
 import asyncio
+import logging
 import traceback
 from datetime import datetime, timezone
 
@@ -9,6 +10,7 @@ import notify
 import state
 
 load_dotenv()
+logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 
 
 async def main() -> None:

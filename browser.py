@@ -113,10 +113,19 @@ async def enter_lottery(concert: dict) -> None:
             await page.wait_for_selector("button[type='submit']:not([disabled])", timeout=15000)
             await page.click("button[type='submit']")
 
-            await page.wait_for_selector(
-                "h1:has-text('Thank'), h2:has-text('Thank'), h3:has-text('Thank'), "
-                "[class*='success'], [class*='confirmation'], [class*='complete']",
-                timeout=15000,
-            )
+            # Wait for the page to settle after submission
+            await page.wait_for_load_state("networkidle", timeout=15000)
+
+            # Confirm success: check for thank-you text anywhere in the body,
+            # or that the form/submit button is gone (hidden after success)
+            confirmed = await page.evaluate("""() => {
+                const text = document.body.innerText.toLowerCase();
+                const keywords = ['thank', 'success', 'submitted', 'confirmed', 'registered', 'entered'];
+                if (keywords.some(k => text.includes(k))) return true;
+                const btn = document.querySelector('button[type="submit"]');
+                return !btn || btn.disabled || getComputedStyle(btn).display === 'none';
+            }""")
+            if not confirmed:
+                raise Exception("Success confirmation not detected after submission")
         finally:
             await browser.close()

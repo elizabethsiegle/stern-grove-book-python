@@ -2,9 +2,13 @@ import asyncio
 import traceback
 from datetime import datetime, timezone
 
+from dotenv import load_dotenv
+
 import browser
 import notify
 import state
+
+load_dotenv()
 
 
 async def main() -> None:
@@ -30,7 +34,7 @@ async def main() -> None:
 
     state.save_entry(entry)
     state.push_state(concert["artist"], concert["show_date"])
-    notify.send_success({**concert, "entered_at": entered_at})
+    notify.send_success(concert)
 
     print("[lottery] Entry submitted and state committed.")
 

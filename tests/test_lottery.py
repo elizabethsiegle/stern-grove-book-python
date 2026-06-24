@@ -6,10 +6,12 @@ from unittest.mock import AsyncMock, patch
 async def test_main_exits_cleanly_when_no_open_lottery():
     with patch("browser.find_open_lottery", new=AsyncMock(return_value=None)), \
          patch("state.load_entries", return_value=[]), \
-         patch("notify.send_success") as mock_success:
+         patch("notify.send_success") as mock_success, \
+         patch("notify.send_failure") as mock_failure:
         from lottery import main
         await main()
     mock_success.assert_not_called()
+    mock_failure.assert_not_called()
 
 
 @pytest.mark.asyncio

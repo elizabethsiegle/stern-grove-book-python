@@ -56,3 +56,41 @@ def test_concert_to_entry_shape():
         "artist": "The Roots",
         "show_date": "june 14",
     }
+
+
+def test_enter_lottery_registers_captcha_route_and_navigates(monkeypatch):
+    monkeypatch.setenv("FIRST_NAME", "Lizzie")
+    monkeypatch.setenv("LAST_NAME", "Siegle")
+    monkeypatch.setenv("EMAIL", "test@test.com")
+    monkeypatch.setenv("ZIP_CODE", "94108")
+    monkeypatch.setenv("GENDER", "female")
+    monkeypatch.setenv("AGE", "25-34")
+    monkeypatch.setenv("ETHNICITY", "mixed")
+    monkeypatch.setenv("ANNUAL_HOUSEHOLD_INCOME", "200k-500k")
+
+    page_mock = AsyncMock()
+    browser_mock = AsyncMock()
+    browser_mock.new_page = AsyncMock(return_value=page_mock)
+    playwright_mock = AsyncMock()
+    playwright_mock.chromium.launch = AsyncMock(return_value=browser_mock)
+
+    with patch("browser.async_playwright") as mock_pw:
+        mock_pw.return_value.__aenter__ = AsyncMock(return_value=playwright_mock)
+        mock_pw.return_value.__aexit__ = AsyncMock(return_value=False)
+
+        import asyncio
+        from browser import enter_lottery
+        asyncio.get_event_loop().run_until_complete(
+            enter_lottery({"concert_id": 6, "event_id": "11997", "artist": "The Roots", "show_date": "june 14"})
+        )
+
+    page_mock.route.assert_called_once()
+    route_pattern = page_mock.route.call_args[0][0]
+    assert "validate-captcha" in route_pattern
+
+    page_mock.goto.assert_called_once()
+    goto_url = page_mock.goto.call_args[0][0]
+    assert "11997" in goto_url
+    assert "tixologi.com" in goto_url
+
+    assert page_mock.fill.call_count >= 4

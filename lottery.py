@@ -34,7 +34,7 @@ async def main() -> None:
 
     state.save_entry(entry)
     state.push_state(concert["artist"], concert["show_date"])
-    notify.send_success(concert)
+    notify.send_success(entry)
 
     print("[lottery] Entry submitted and state committed.")
 

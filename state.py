@@ -1,7 +1,10 @@
 import json
+import logging
 import os
 import subprocess
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 STATE_FILE = Path("entered-lotteries.json")
 
@@ -29,5 +32,5 @@ def push_state(artist: str, show_date: str) -> None:
         subprocess.run(["git", "add", "entered-lotteries.json"], check=True)
         subprocess.run(["git", "commit", "-m", commit_msg], check=True)
         subprocess.run(["git", "push", remote, "HEAD:main"], check=True)
-    except Exception as exc:
-        print(f"[state] git push failed (entry still recorded locally): {exc}")
+    except Exception:
+        logger.error("[state] git push failed (entry still recorded locally)", exc_info=False)

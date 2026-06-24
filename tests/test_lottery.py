@@ -32,6 +32,8 @@ async def test_main_saves_and_notifies_on_success():
     assert "entered_at" in saved
     mock_push.assert_called_once_with("The Roots", "june 14")
     mock_success.assert_called_once()
+    success_arg = mock_success.call_args[0][0]
+    assert "entered_at" in success_arg
 
 
 @pytest.mark.asyncio

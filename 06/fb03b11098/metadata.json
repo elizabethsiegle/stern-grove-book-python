@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "06fb03b11098",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "browser.py",
+    "tests/test_browser.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/06/fb03b11098/0/metadata.json",
+      "transcript": "/06/fb03b11098/0/full.jsonl",
+      "content_hash": "/06/fb03b11098/0/content_hash.txt",
+      "prompt": "/06/fb03b11098/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 92,
+    "cache_creation_tokens": 90806,
+    "cache_read_tokens": 4964593,
+    "output_tokens": 51776,
+    "api_call_count": 66
+  }
+}

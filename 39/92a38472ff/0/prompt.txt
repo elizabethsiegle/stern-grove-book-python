@@ -148,3 +148,7 @@ Traceback (most recent call last):
 playwright._impl._errors.TimeoutError: Page.select_option: Timeout 30000ms exceeded.
 Call log:
 waiting for locator("select[name='tickets'], select[name='ticketCount']")
+
+---
+
+amazing!! now please make a readme mentioning how it works ( headless Chromium browser loads sterngrove.org/lineup2026 and reads window.TixologiWidget.concerts — a JavaScript object Stern Grove injects at page load — to find which lottery is currently open), Navigates to the Tixologi registration form at events.tixologi.com/event/{id}/lottery, Fills all form fields: name, email, 4 tickets, zip code, and demographic dropdowns, Sends a success or failure email via Resend, Records the entry in entered-lotteries.json and commits it back to the repo so it never double-enters...and link to the tools used in the stack (Playwright for browser automation, Resend for email, GitHub Actions for weekly cron, Entire for agentic git), how to setup or run locally...

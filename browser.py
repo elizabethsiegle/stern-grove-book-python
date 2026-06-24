@@ -96,22 +96,26 @@ async def enter_lottery(concert: dict) -> None:
             url = f"https://events.tixologi.com/event/{concert['event_id']}/lottery"
             await page.goto(url, wait_until="networkidle", timeout=30000)
 
-            await page.fill("input[name='firstName'], input[placeholder*='First']", os.environ["FIRST_NAME"])
-            await page.fill("input[name='lastName'], input[placeholder*='Last']", os.environ["LAST_NAME"])
-            await page.fill("input[name='email'], input[type='email']", os.environ["EMAIL"])
-            await page.select_option("select[name='tickets'], select[name='ticketCount']", "4")
-            await page.fill("input[name='zip'], input[name='zipCode']", os.environ["ZIP_CODE"])
+            await page.fill("input[name='firstName']", os.environ["FIRST_NAME"])
+            await page.fill("input[name='lastName']", os.environ["LAST_NAME"])
+            await page.fill("input[name='email']", os.environ["EMAIL"])
+            await page.select_option("select[name='numberOfTickets']", "4")
+            await page.fill("input[name='zipCode']", os.environ["ZIP_CODE"])
             await page.select_option("select[name='gender']", os.environ["GENDER"])
-            await page.select_option("select[name='age'], select[name='ageRange']", os.environ["AGE"])
+            await page.select_option("select[name='age']", os.environ["AGE"])
             await page.select_option("select[name='ethnicity']", os.environ["ETHNICITY"])
-            await page.select_option("select[name='income'], select[name='householdIncome']", os.environ["ANNUAL_HOUSEHOLD_INCOME"])
-            await page.select_option("select[name='groups'], select[name='followingGroups']", "N/A")
-            await page.check("input[type='checkbox'][name*='conduct'], input[type='checkbox'][name*='terms']")
+            await page.select_option("select[name='householdIncome']", os.environ["ANNUAL_HOUSEHOLD_INCOME"])
+            # identifyGroups is a set of checkboxes — check the N/A option
+            await page.check("#identifyGroups-na")
+            await page.check("#codeOfConductAccepted")
 
-            await page.click("button[type='submit'], input[type='submit']")
+            # Submit button is disabled until reCAPTCHA validates; wait for it to enable
+            await page.wait_for_selector("button[type='submit']:not([disabled])", timeout=15000)
+            await page.click("button[type='submit']")
 
             await page.wait_for_selector(
-                ".confirmation, h1:has-text('Thank'), h2:has-text('Thank'), [class*='success']",
+                "h1:has-text('Thank'), h2:has-text('Thank'), h3:has-text('Thank'), "
+                "[class*='success'], [class*='confirmation'], [class*='complete']",
                 timeout=15000,
             )
         finally:

@@ -1,0 +1,25 @@
+looks good
+
+---
+
+1
+
+---
+
+next
+
+---
+
+error installing playwright browsers:
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Package libasound2 is a virtual package provided by:
+  liboss4-salsa-asound2 4.2-build2020-1ubuntu3.1
+  libasound2t64 1.2.11-1ubuntu0.2 (= 1.2.11-1ubuntu0.2)
+
+E: Package 'libasound2' has no installation candidate
+Failed to install browsers
+Error: Installation process exited with code: 100
+Error: Process completed with exit code 1.
